@@ -14,7 +14,7 @@ from baked.lib.wrexhamshop.service.wrexhamshopservice import WrexhamShopService
 class WrexhamShopAgent:
 
     def __init__(self):
-        self._last_check = os.path.join(get_global("rtshares")["temp"], "lastcheck.json")
+        self._last_check = os.path.join(get_global("shares", "temp"), "lastcheck.json")
         if not os.path.exists(self._last_check):
             with open(self._last_check, "w") as fh:
                 json.dump({}, fh)
@@ -28,7 +28,7 @@ class WrexhamShopAgent:
         price = None
         stock = None
 
-        with open(os.path.join(local["root"], "config/wrexhamshop/products.json", "r")) as fh:
+        with open(os.path.join(local["root"], "config/wrexhamshop/products.json"), "r") as fh:
             service = WrexhamShopService(json.load(fh))
 
         try:
@@ -43,7 +43,7 @@ class WrexhamShopAgent:
             notify = True
 
         else:
-            with open(self._last_check, "w") as fh:
+            with open(self._last_check, "r") as fh:
                 lastcheck = json.load(fh)
 
             if not lastcheck:
@@ -56,12 +56,11 @@ class WrexhamShopAgent:
             # Piggy back off of supersix to send the email.
             user_service = UserService("supersix")
             admin_user = user_service.get_admin_user()
-            my_user = user_service.get(user_id="SSX-MB")
+            my_user = user_service.get(user_id="ssx-mb")
             credential = CredentialService().get_credential(admin_user, "gmail")
             
             with EmailService("smtp").connect(credential.username, credential.password) as email:
                 email.set_from(credential.username)
                 email.add_recipient(my_user.email)
                 email.set_subject(f"[{stock.upper()}] Wrexham Snapback Cap.")
-                email.set_body(f"<html><body>Wrexham Snapback Cap:\n\nPrice: {price}\nStock Status: {stock}</body></html>")
-                email.send()
+                email.set_body(f"Wrexham Snapback Cap:\n\nPrice: {price}\nStock Status: {stock}")
