@@ -1,0 +1,11 @@
+{
+    "products": {
+        "snapbackcap": {
+            "url_ext": "wrexham-afc-snapback-cap",
+            "outer_div_class": "summary-inner",
+            "inner_div_class": "basel-scroll-content",
+            "price_class": "price",
+            "stock_class": "stock"
+        }
+    }
+}
