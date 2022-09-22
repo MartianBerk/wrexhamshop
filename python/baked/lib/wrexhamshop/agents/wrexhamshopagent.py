@@ -65,5 +65,5 @@ class WrexhamShopAgent:
                 email.set_subject(f"[{stock.upper()}] Wrexham Snapback Cap.")
                 email.set_body(f"Wrexham Snapback Cap:\n\nPrice: {price}\nStock Status: {stock}")
 
-            with open(self._last_check, "r") as fh:
+            with open(self._last_check, "w") as fh:
                 json.dump({"stamp": datetime.now().strftime(DATETIME_FORMAT)}, fh)
