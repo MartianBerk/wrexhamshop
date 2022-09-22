@@ -59,7 +59,7 @@ class WrexhamShopAgent:
             my_user = user_service.get(user_id="ssx-mb")
             credential = CredentialService().get_credential(admin_user, "gmail")
             
-            with EmailService("smtp").connect(credential.username, credential.password) as email:
+            with EmailService("smtp").connect(credential.username, credential.password, exchange="smtp.gmail.com") as email:
                 email.set_from(credential.username)
                 email.add_recipient(my_user.email)
                 email.set_subject(f"[{stock.upper()}] Wrexham Snapback Cap.")
