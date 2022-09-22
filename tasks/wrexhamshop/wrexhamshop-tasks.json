@@ -5,8 +5,8 @@
             "month": "*",
             "day": "*",
             "weekday": "*",
-            "hour": "*/1",
-            "minute": "*",
+            "hour": "*",
+            "minute": "0",
             "command": "~/lib/python ~/build/agents/wrexhamshop/wrexhamshopagent.py"
           }
     ]

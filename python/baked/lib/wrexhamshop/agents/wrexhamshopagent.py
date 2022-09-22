@@ -49,7 +49,7 @@ class WrexhamShopAgent:
             if not lastcheck:
                 notify = True
 
-            elif lastcheck and datetime.strptime(lastcheck, DATETIME_FORMAT) >= datetime.now() - timedelta(hours=6):
+            elif lastcheck and datetime.strptime(lastcheck, DATETIME_FORMAT) <= datetime.now() - timedelta(hours=6):
                 notify = True
 
         if notify:
