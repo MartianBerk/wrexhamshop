@@ -49,7 +49,7 @@ class WrexhamShopAgent:
             if not lastcheck:
                 notify = True
 
-            elif lastcheck and datetime.strptime(lastcheck, DATETIME_FORMAT) <= datetime.now() - timedelta(hours=6):
+            elif lastcheck and datetime.strptime(lastcheck["stamp"], DATETIME_FORMAT) <= datetime.now() - timedelta(hours=6):
                 notify = True
 
         if notify:
@@ -64,3 +64,6 @@ class WrexhamShopAgent:
                 email.add_recipient(my_user.email)
                 email.set_subject(f"[{stock.upper()}] Wrexham Snapback Cap.")
                 email.set_body(f"Wrexham Snapback Cap:\n\nPrice: {price}\nStock Status: {stock}")
+
+            with open(self._last_check, "r") as fh:
+                json.dump({"stamp": datetime.now().strftime(DATETIME_FORMAT)}, fh)
