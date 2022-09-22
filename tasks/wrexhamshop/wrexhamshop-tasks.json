@@ -1,0 +1,13 @@
+{
+    "tasks": [
+        {
+            "name": "wrexhamshop-stockcheck",
+            "month": "*",
+            "day": "*",
+            "weekday": "*",
+            "hour": "*/1",
+            "minute": "*",
+            "command": "~/lib/python ~/build/agents/wrexhamshop/wrexhamshopagent.py"
+          }
+    ]
+}
