@@ -1,4 +1,4 @@
-from baked.lib.wrexhamshop.agents.wrexhamshopsagent import WrexhamShopAgent
+from baked.lib.wrexhamshop.agents.wrexhamshopagent import WrexhamShopAgent
 
 
 if __name__ == "__main__":
