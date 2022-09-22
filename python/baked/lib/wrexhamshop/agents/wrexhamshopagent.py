@@ -8,7 +8,7 @@ from baked.lib.admin.service.userservice import UserService
 from baked.lib.datetime import DATETIME_FORMAT
 from baked.lib.email.emailservice import EmailService
 from baked.lib.globals.setting import get_local, get_global
-from baked.lib.systems.wrexhamshop.service.wrexhamshopservice import WrexhamShopService
+from baked.lib.wrexhamshop.service.wrexhamshopservice import WrexhamShopService
 
 
 class WrexhamShopAgent:
