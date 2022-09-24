@@ -49,8 +49,15 @@ class WrexhamShopAgent:
             if not lastcheck:
                 notify = True
 
-            elif lastcheck and datetime.strptime(lastcheck["stamp"], DATETIME_FORMAT) <= datetime.now() - timedelta(hours=6):
-                notify = True
+            elif lastcheck:
+                lastcheck = datetime.strptime(lastcheck["stamp"], DATETIME_FORMAT)
+                now = datetime.now()
+
+                if lastcheck.date() < now.date():
+                    notify = True
+
+                elif lastcheck <= now - timedelta(hours=6):
+                    notify = True
 
         if notify:
             # Piggy back off of supersix to send the email.
